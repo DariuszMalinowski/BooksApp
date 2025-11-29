@@ -28,5 +28,10 @@
             "off"
         ],
         "no-prototype-builtins": ["off"]
-    }
+    },
+    "globals": {
+    "Handlebars": "readonly",
+    "dataSource": "readonly",
+    "utils": "readonly"
+  }
 }
