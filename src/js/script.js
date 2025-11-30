@@ -24,11 +24,10 @@ function render (){
     const ratingWidth = book.rating * 10;
     console.log(ratingWidth);
     // dodajemy te wartości do obiektu dla Handlebars
-    const bookData = {
-      ...book,
+    const bookData = Object.assign({}, book, {
       ratingBgc: ratingBgc,
       ratingWidth: ratingWidth,
-    };
+    });
     //wygenerowanie kodu HTML na podstawie szablonu oraz danych o konkretnej książce.
     const generatedHTML = template(bookData);
     //console.log(generatedHTML);
