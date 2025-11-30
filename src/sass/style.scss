@@ -67,14 +67,18 @@ figure {
 
   &__rating {
     width: 80%;
-    margin: 0 auto;
+    margin: 8px auto 0;
     background: #eee;
     border-radius: 10px;
     overflow: hidden;
+    height: 18px;
 
     &__fill {
-      width: 100%;
+      display: block;
+      height: 100%;
+      width: 0;
+      transition: width .3s ease;
+      background: #b4df5b;
     }
   }
-
 }

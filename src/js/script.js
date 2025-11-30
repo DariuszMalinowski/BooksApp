@@ -17,8 +17,20 @@ function render (){
   //Wewnątrz niej przejdź po każdym elemencie z dataSource.books
   for(let book of booksList){
     //console.log(book);
+    // Obliczanie gradientu rating v
+    const ratingBgc = determineRatingBgc(book.rating);
+    
+    //obliczanie szerokości paska rating
+    const ratingWidth = book.rating * 10;
+    console.log(ratingWidth);
+    // dodajemy te wartości do obiektu dla Handlebars
+    const bookData = {
+      ...book,
+      ratingBgc: ratingBgc,
+      ratingWidth: ratingWidth,
+    };
     //wygenerowanie kodu HTML na podstawie szablonu oraz danych o konkretnej książce.
-    const generatedHTML = template(book);
+    const generatedHTML = template(bookData);
     //console.log(generatedHTML);
     //Na postawie tego kodu HTML wygeneruj element DOM.
     const element = utils.createDOMFromHTML(generatedHTML);
@@ -29,6 +41,19 @@ function render (){
 }
 
 render();
+
+function determineRatingBgc(rating) {
+  if (rating < 6) {
+    return 'linear-gradient(to bottom, #fefcea 0%, #f1da36 100%)'; // żółty
+  } else if (rating >= 6 && rating < 8) {
+    return 'linear-gradient(to bottom, #b4df5b 0%, #b4df5b 100%)'; // jasna zieleń
+  } else if (rating >= 8 && rating < 9) {
+    return 'linear-gradient(to bottom, #299a0b 0%, #299a0b 100%)'; // ciemna zieleń
+  } else { // rating >= 9
+    return 'linear-gradient(to bottom, #ff0084 0%, #ff9900 100%)'; // różowo/pomarańcz
+  }
+}
+
 
 function initActions(){
 
@@ -99,5 +124,7 @@ function filterBooks(){
     }
   }
 }
+
+
 
 initActions();
